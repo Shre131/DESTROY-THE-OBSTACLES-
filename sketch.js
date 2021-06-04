@@ -139,7 +139,11 @@ spawnRightObstacles();
 
 score=Math.round(frameCount/20);
 
-
+if(player.isTouching(track2) && keyDown("LEFT_ARROW")|| touches.length>0){
+  touches=[];
+  player.x=155;
+  }
+  
 if(player.isTouching(track) && keyDown("RIGHT_ARROW")|| touches.length>0){
   touches=[];
 player.x=345;
@@ -157,10 +161,7 @@ if(player.isTouching(track2)){
   //console.log("rightTrack");
 }
 
-if(player.isTouching(track2) && keyDown("LEFT_ARROW")|| touches.length>0){
-  touches=[];
-  player.x=155;
-  }
+
 
 
   if(player.isTouching(obstacle1Group)|| player.isTouching(obstacle2Group)){
@@ -168,7 +169,7 @@ if(player.isTouching(track2) && keyDown("LEFT_ARROW")|| touches.length>0){
  
   }
 a=1;
-  if(mousePressedOver(invis)|| touches.length>0 && gameState===PLAY){
+  if(mousePressedOver(invis)|| touches.length>0 && a==1){
     touches=[];
     obstacle1Group.destroyEach();
     obstacle2Group.destroyEach();
