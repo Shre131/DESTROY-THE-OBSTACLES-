@@ -26,7 +26,8 @@ var obstacle1Groupl3,obstacle2Groupl3;
 var skipl3, invisl3;
 var youWon,youWonimage;
 var skipImage;
-
+ 
+var a;
 
 
 function preload() {
@@ -68,6 +69,8 @@ obstacle2Group=new Group();
 invis=createSprite(390,displayHeight/2+200,50,50);
 invis.addImage(invisImage);
 invis.scale=0.1;
+
+
 skip=createSprite(420,displayHeight/2+200,50,50);
 skip.addImage(skipImage);
 skip.scale=0.1;
@@ -137,7 +140,8 @@ spawnRightObstacles();
 score=Math.round(frameCount/20);
 
 
-if(player.isTouching(track) && keyDown("RIGHT_ARROW")){
+if(player.isTouching(track) && keyDown("RIGHT_ARROW")|| touches.length>0){
+  touches=[];
 player.x=345;
 }
 
@@ -153,7 +157,8 @@ if(player.isTouching(track2)){
   //console.log("rightTrack");
 }
 
-if(player.isTouching(track2) && keyDown("LEFT_ARROW")){
+if(player.isTouching(track2) && keyDown("LEFT_ARROW")|| touches.length>0){
+  touches=[];
   player.x=155;
   }
 
@@ -162,8 +167,9 @@ if(player.isTouching(track2) && keyDown("LEFT_ARROW")){
     gameState=END;
  
   }
-
-  if(mousePressedOver(invis)){
+a=1;
+  if(mousePressedOver(invis)|| touches.length>0 && gameState===PLAY){
+    touches=[];
     obstacle1Group.destroyEach();
     obstacle2Group.destroyEach();
     invis.destroy();
@@ -230,7 +236,7 @@ obstacle2Group.destroyEach();
   skipl2.visible=true;
   invisl2.visible=true;
 
-if(player.isTouching(track) && keyDown("RIGHT_ARROW")){
+if(player.isTouching(track) && keyDown("RIGHT_ARROW") ){
 player.x=345;
 }
 
