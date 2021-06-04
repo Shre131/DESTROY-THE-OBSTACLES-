@@ -25,6 +25,7 @@ var skipl2;
 var obstacle1Groupl3,obstacle2Groupl3;
 var skipl3, invisl3;
 var youWon,youWonimage;
+var skipImage;
 
 
 
@@ -39,7 +40,7 @@ invisImage=loadImage("Invis.png");
 insImage=loadImage("start.PNG");
 pbImage=loadImage("Pb.png");
 youWonimage=loadImage("winImage.jpg");
-
+skipImage=loadImage("skipImage.png");
 }
 
 
@@ -68,6 +69,8 @@ invis=createSprite(390,displayHeight/2+200,50,50);
 invis.addImage(invisImage);
 invis.scale=0.1;
 skip=createSprite(420,displayHeight/2+200,50,50);
+skip.addImage(skipImage);
+skip.scale=0.1;
 obstacle1Groupl2=new Group();
 obstacle2Groupl2=new Group();
 
@@ -89,7 +92,8 @@ invisl2.visible=false;
 
 skipl2=createSprite(420,displayHeight/2+150,50,50);
 skipl2.visible=false;
-
+skipl2.addImage(skipImage);
+skipl2.scale=0.1;
 obstacle1Groupl3=new Group();
 obstacle2Groupl3=new Group();
 
@@ -101,6 +105,9 @@ invisl3.visible=false;
 
 skipl3=createSprite(420,displayHeight/2+150,50,50);
 skipl3.visible=false;
+skipl3.addImage(skipImage);
+skipl3.scale=0.1;
+
 }
 
 function draw() {
@@ -122,6 +129,7 @@ drawSprites();
 if(gameState===PLAY){
   startImage.destroy();
   bg.addImage( "clouds",bgImage);
+
 
 spawnLeftObstacles();
 spawnRightObstacles();
@@ -172,6 +180,11 @@ if(player.isTouching(track2) && keyDown("LEFT_ARROW")){
   }
   
   drawSprites();
+  fill("yellow");
+  textStyle(BOLD);
+  textFont("Courier New");
+  textSize(15);
+  text("LEVEL 1",220,50);
 fill("#ff0011");
 textSize(20);
 textFont("Courier New");
@@ -179,7 +192,7 @@ textStyle(BOLD);
   text("Score: "+score,30,30);
 
 
-  if(score===10){
+  if(score===100){
     gameState="level 2";
   }
     
@@ -206,6 +219,8 @@ if(gameState===END){
 if(gameState==="level 2"){
   bg.addImage( "clouds",bgImage);
   score=Math.round(frameCount/20);
+
+  
 obstacle1Group.destroyEach();
 obstacle2Group.destroyEach();
   spawnLeftObstacles2();
@@ -258,6 +273,12 @@ if(player.isTouching(track2) && keyDown("LEFT_ARROW")){
   }
   
   drawSprites();
+ 
+  fill("yellow");
+  textStyle(BOLD);
+  textFont("Courier New");
+  textSize(15);
+  text("LEVEL 2",220,50);
 fill("#ff0011");
 textSize(20);
 textFont("Courier New");
@@ -265,7 +286,7 @@ textStyle(BOLD);
   text("Score: "+score,30,30);
 
 
-  if(score===20){
+  if(score===300){
     gameState="level3";
   }
     
@@ -274,6 +295,7 @@ textStyle(BOLD);
 if(gameState==="level3"){
   bg.addImage( "clouds",bgImage);
   score=Math.round(frameCount/20);
+
 obstacle1Group.destroyEach();
 obstacle2Group.destroyEach();
   spawnLeftObstacles3();
@@ -328,15 +350,21 @@ if(player.isTouching(track2) && keyDown("LEFT_ARROW")){
   }
   
   drawSprites();
+  fill("yellow");
+  textStyle(BOLD);
+  textFont("Courier New");
+  textSize(15);
+  text("LEVEL 3",220,50);
 fill("#ff0011");
 textSize(20);
 textFont("Courier New");
 textStyle(BOLD);
   text("Score: "+score,30,30);
 
-  if(score>=30){
+  if(score>=600){
     bg.addImage("clouds",youWonimage);
     bg.scale=3;
+
     
   obstacle2Groupl3.destroyEach();
   obstacle1Groupl3.destroyEach();
