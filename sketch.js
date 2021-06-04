@@ -119,7 +119,8 @@ function draw() {
 
 if(gameState===START){
   
-if(mousePressedOver(pb)){
+if(mousePressedOver(pb)||touches.length>0){
+  touches=[];
   player.x=155;
   gameState=PLAY;
   startImage.visible=false;
@@ -143,7 +144,7 @@ if(player.isTouching(track2) && keyDown("LEFT_ARROW")|| touches.length>0){
   touches=[];
   player.x=155;
   }
-  
+
 if(player.isTouching(track) && keyDown("RIGHT_ARROW")|| touches.length>0){
   touches=[];
 player.x=345;
